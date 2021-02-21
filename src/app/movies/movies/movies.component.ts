@@ -11,7 +11,7 @@ import { SearchData } from '../search/search.component';
 })
 export class MoviesComponent implements OnInit {
   moviesSubs: Subscription
-  movies: MovieResponse
+  movies: MovieResponse = []
 
   searchData: SearchData
   noQuery = true

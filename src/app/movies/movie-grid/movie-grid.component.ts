@@ -18,6 +18,6 @@ export class MovieGridComponent implements OnInit {
   }
 
   onMovieClick(id: string) {
-    this.router.navigate(['movies',id])
+    this.router.navigate(['movies',id], {queryParamsHandling: 'preserve'})
   }
 }

@@ -1,13 +1,8 @@
 <div class="ui stackable five column grid">
-    <div *ngFor="let movie of movies" class="column" (click)="onMovieClick(movie.imdbID)">
-        <div class="ui card" style="height: 100%;">
-            <div class="image">
-                <img [src]="movie.Poster !== 'N/A' ? movie.Poster : 'https://allmovies.tube/assets/img/no-poster.png'" [alt]="'\'' + movie.Title + '\' movie poster'" class="ui small image" style="height: auto; width: 100%">
-            </div>
-            <div class="content">
-                <div class="header">{{movie.Title}}</div>
-                <div class="description">{{movie.Year}}</div>
-            </div>
-        </div>
-    </div>
+    <app-movie-grid-item 
+        class="column"
+        *ngFor="let movie of movies" 
+        [movie]="movie" 
+        (click)="onMovieClick(movie.imdbID)"
+    ></app-movie-grid-item>
 </div>

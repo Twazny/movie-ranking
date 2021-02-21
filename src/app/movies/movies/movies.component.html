@@ -1,18 +1,28 @@
-<div class="ui container">
-    <app-search style="display:block;margin-top: 10px;"></app-search>
-    <div class="ui segment">
-        <div class="ui stackable four column grid">
-            <div *ngFor="let movie of movieObs | async; index as i" class="column">
-                <div class="ui card" style="height: 100%;">
-                    <div class="image">
-                        <img [src]="movie.Poster !== 'N/A' ? movie.Poster : 'https://allmovies.tube/assets/img/no-poster.png'" [alt]="'\'' + movie.Title + '\' movie poster'" class="ui small image" style="height: auto; width: 100%">
-                    </div>
-                    <div class="content">
-                        <div class="header">{{movie.Title}}</div>
-                        <div class="description">{{movie.Year}}</div>
-                    </div>
-                </div>
-            </div>
+<div style="display: flex; height: 100%; flex-grow: 1; flex-direction: column;">
+    <app-search 
+        [data]="searchData"
+        (search)="handleSearch($event)"
+    >
+    </app-search>
+    <div class="ui segment" style="height: 100%; flex-grow: 1;">
+        <app-no-data-message
+            *ngIf="noQuery"
+            message="What movie you are looking for?"
+            additional="Type some term or production year"
+        ></app-no-data-message>
+        <app-no-data-message
+            *ngIf="movies.length === 0 && !noQuery"
+            message="No results"
+            additional="Try to type something else"
+        ></app-no-data-message>
+   
+        <div *ngIf="loading" class="ui active inverted dimmer">
+            <div class="ui text loader">Loading</div>
         </div>
+
+        <app-movie-grid  
+            *ngIf="movies.length > 0"
+            [movies]="movies"
+        ></app-movie-grid>
     </div>
 </div>

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { environment } from '../../environments/environment'
 import { map } from 'rxjs/operators'
+import { FunctionCall } from '@angular/compiler'
 
 export type SearchResponse = {
     Response: string;
@@ -16,6 +17,31 @@ export type Movie = {
     imdbID: string;
     Type: string;
     Poster: string;
+}
+export interface MovieFullData extends Movie {
+    Rated: string;
+    Released: string;
+    Runtime: string;
+    Genre: string;
+    Director: string;
+    Writer: string;
+    Actors: string;
+    Plot: string;
+    Language: string;
+    Country: string;
+    Awards: string;
+    Ratings: {
+        Source: string;
+        value: string;  
+    }[];
+    Metascore: string;
+    imdbRating: string;
+    imdbVotes: string;
+    DVD: string;
+    BoxOffice:string;
+    Production: string;
+    Website: string;
+    Response: string;
 }
 
 @Injectable({
@@ -36,7 +62,22 @@ export class MovieService {
                 type: 'movie'
             }
         }).pipe(
-            map(res => res.Search)
+            map(res => {
+                if (res.Response === "False") {
+                    return []
+                }
+                return res.Search
+            })
         )
+    }
+
+    get(id: string): Observable<MovieFullData> {
+        return this.http.get<MovieFullData>(this.url, {
+            params: {
+                apikey: environment.omdbAPIkey,
+                i: id,
+                plot: 'full'
+            }
+        })
     }
 }

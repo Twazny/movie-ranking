@@ -1,21 +1,21 @@
 <div class="ui segment">
-    <div class="ui form">
-        <div class="ui grid">
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="ui form" >
+        <div class="ui grid stackable">
             <div class="ten wide column">
                 <div class="field">
                     <label for="term">Search movies</label>
-                    <input type="text" name="term" id="">
+                    <input type="text" name="term" id="" formControlName="term" placeholder="At least three characters">
                 </div>
             </div>
             <div class="four wide column">
                 <div class="field">
                     <label for="year">Year</label>
-                    <input type="number" name="year" id="">
+                    <input type="number" name="year" id="" formControlName="year" placeholder="e.g. 2015">
                 </div>
             </div>
             <div class="two wide column" style="margin-top: auto; margin-bottom: 0;">
-                <button class="ui button" style="width:100%;">Search</button>
+                <button type="submit" class="ui button" style="width:100%;">Search</button>
             </div>
         </div>
-    </div>    
+    </form>    
 </div>

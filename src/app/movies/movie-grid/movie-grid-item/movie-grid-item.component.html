@@ -1,0 +1,9 @@
+<div class="movie-grid-item">
+    <div class="image-container">
+        <img 
+            class="item-image" 
+            [src]="movie.Poster !== 'N/A' ? movie.Poster : noPosterImage" 
+        />
+    </div>
+    <p  class="item-title">{{movie.Title}}</p>
+</div>

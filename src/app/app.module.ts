@@ -12,6 +12,7 @@ import { YourMoviesComponent } from './movies/your-movies/your-movies.component'
 import { NoDataMessageComponent } from './movies/no-data-message/no-data-message.component';
 import { MovieGridComponent } from './movies/movie-grid/movie-grid.component';
 import { MovieDetailComponent } from './movies/movie-detail/movie-detail.component';
+import { MovieGridItemComponent } from './movies/movie-grid/movie-grid-item/movie-grid-item.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MovieDetailComponent } from './movies/movie-detail/movie-detail.compone
     YourMoviesComponent,
     NoDataMessageComponent,
     MovieGridComponent,
-    MovieDetailComponent
+    MovieDetailComponent,
+    MovieGridItemComponent
   ],
   imports: [
     BrowserModule,

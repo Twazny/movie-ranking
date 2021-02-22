@@ -1,0 +1,24 @@
+.position-number {
+    font-size: 1.5rem; 
+    position: absolute; 
+    bottom: 0; 
+    left: 50%; 
+    transform: translate(-50%,50%); 
+    height: 2rem; 
+    width: 2rem; 
+    background-color: gold; 
+    border-radius: 1rem;
+    line-height: 2rem;
+    text-align: center;
+}
+
+.placeholder {
+    display: inline-block; 
+    position:relative;
+    height: 160px; 
+    width: 100px; 
+    background-color: lightgray; 
+    font-size: 5rem;
+    text-align: center;
+    line-height: 160px;
+}

@@ -32,4 +32,7 @@ export class MovieDetailComponent implements OnInit {
   onBack(): void {
     this.router.navigate(['movies'], {queryParamsHandling: 'preserve'})
   }
+  onAdd(): void {
+    this.movieService.addMovie(this.movieData)
+  }
 }

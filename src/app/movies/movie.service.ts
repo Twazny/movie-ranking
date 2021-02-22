@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import { Observable } from 'rxjs'
+import { BehaviorSubject, Observable } from 'rxjs'
 import { environment } from '../../environments/environment'
 import { map } from 'rxjs/operators'
 import { FunctionCall } from '@angular/compiler'
@@ -44,11 +44,19 @@ export interface MovieFullData extends Movie {
     Response: string;
 }
 
+export interface YourMovie extends Movie {
+    position?: number;
+    rating?: 1 | 2 | 3 | 4 | 5;
+    review?: string;
+}
+
 @Injectable({
     providedIn: 'root'
 })
 export class MovieService {
     private url = 'http://www.omdbapi.com/'
+    yourMovies: YourMovie[] = []
+    yourMoviesSubject = new BehaviorSubject<YourMovie[]>(this.yourMovies)
 
     constructor(
         private http: HttpClient
@@ -79,5 +87,14 @@ export class MovieService {
                 plot: 'full'
             }
         })
+    }
+
+    addMovie(movie: YourMovie): void {
+        this.yourMovies.push(movie)
+        this.notify()
+    }
+
+    private notify(): void {
+        this.yourMoviesSubject.next(this.yourMovies.slice())
     }
 }

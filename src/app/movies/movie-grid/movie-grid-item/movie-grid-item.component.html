@@ -1,24 +1,9 @@
-    <!--  <div class="column" style="height: 100%;">
-1<div class="ui card" style="height: 100%;">
-        <div class="image">
-            <img 
-                [src]="movie.Poster !== 'N/A' ? movie.Poster : 'https://allmovies.tube/assets/img/no-poster.png'" 
-                [alt]="'\'' + movie.Title + '\' movie poster'" 
-                class="ui small image" 
-                style="height: auto; width: 100%"
-            >
-        </div>
-        <div class="content">
-            <div class="header">{{movie.Title}}</div>
-            <div class="description">{{movie.Year}}</div>
-        </div>
-    </div> 
-
-</div> -->
-
-
-<div style="height: 50%; width: 300px;">
-    <div>
-        <img [src]="movie.Poster" />
+<div class="movie-grid-item">
+    <div class="image-container">
+        <img 
+            class="item-image" 
+            [src]="movie.Poster !== 'N/A' ? movie.Poster : noPosterImage" 
+        />
     </div>
+    <p  class="item-title">{{movie.Title}}</p>
 </div>

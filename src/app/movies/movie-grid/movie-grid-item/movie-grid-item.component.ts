@@ -9,6 +9,8 @@ import { Movie } from '../../movie.service';
 export class MovieGridItemComponent implements OnInit {
   @Input() movie: Movie
 
+  noPosterImage = 'https://allmovies.tube/assets/img/no-poster.png'
+
   constructor() { }
 
   ngOnInit(): void {

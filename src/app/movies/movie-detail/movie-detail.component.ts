@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { tap, switchMap, map } from 'rxjs/operators';
-import { MovieFullData, MovieService } from '../movie.service';
+import { YourMovieFullData, MovieService } from '../movie.service';
 
 @Component({
   selector: 'app-movie-detail',
@@ -10,7 +10,7 @@ import { MovieFullData, MovieService } from '../movie.service';
 })
 export class MovieDetailComponent implements OnInit {
   id: string
-  movieData: MovieFullData
+  movieData: YourMovieFullData
   loading = true
 
   constructor(
@@ -30,9 +30,17 @@ export class MovieDetailComponent implements OnInit {
   }
 
   onBack(): void {
-    this.router.navigate(['movies'], {queryParamsHandling: 'preserve'})
+    this.router.navigate(['movies'], { queryParamsHandling: 'preserve' })
   }
   onAdd(): void {
-    this.movieService.addMovie(this.movieData)
+    this.movieService.updateYourMovie(this.movieData)
+  }
+  handleRatingChange(rating): void {
+    this.movieData.rating = rating
+    this.movieService.updateYourMovie(this.movieData)
+  }
+
+  onAddReview(): void {
+
   }
 }

@@ -13,6 +13,7 @@ import { NoDataMessageComponent } from './movies/no-data-message/no-data-message
 import { MovieGridComponent } from './movies/movie-grid/movie-grid.component';
 import { MovieDetailComponent } from './movies/movie-detail/movie-detail.component';
 import { MovieGridItemComponent } from './movies/movie-grid/movie-grid-item/movie-grid-item.component';
+import { MovieRatingComponent } from './movies/movie-detail/movie-rating/movie-rating.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MovieGridItemComponent } from './movies/movie-grid/movie-grid-item/movi
     NoDataMessageComponent,
     MovieGridComponent,
     MovieDetailComponent,
-    MovieGridItemComponent
+    MovieGridItemComponent,
+    MovieRatingComponent
   ],
   imports: [
     BrowserModule,

@@ -40,9 +40,20 @@
                   </tr>
                 </tbody>
               </table>
+              <p>Your rating:</p>
+              <app-movie-rating 
+                (ratingChange)="handleRatingChange($event)"
+                [rating]="movieData.rating"
+              ></app-movie-rating>
+              <br>
               <button (click)="onAdd()" class="ui button">Add to your movies</button>
           </div>
       </div>
+      <h5 *ngIf="!movieData.review">You have not reviewed this movie yet</h5>
+      <button (click)="onAddReview()" class="ui labeled icon button">
+          <i class="plus icon"></i>
+          Add Review
+      </button>
     </div>
-    <button class="ui button">Add Review</button>
+
 </div>

@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Review } from '../../movie.service';
 
 
 @Component({
@@ -8,7 +9,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./movie-review.component.scss']
 })
 export class MovieReviewComponent implements OnInit {
-  @Input() review
+  @Input() review: Review
+  @Output('review') reviewEvent = new EventEmitter<Review>()
+  @Output('cancel') cancelEvent = new EventEmitter()
 
   form: FormGroup
 
@@ -16,8 +19,8 @@ export class MovieReviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      title: new FormControl('', Validators.required),
-      review: new FormControl('', Validators.required)
+      title: new FormControl(this.review.title, Validators.required),
+      review: new FormControl(this.review.review, Validators.required)
     })
   }
 
@@ -25,5 +28,11 @@ export class MovieReviewComponent implements OnInit {
     if (!this.form.valid) {
       return
     }
+    const value = this.form.value as Review
+    this.reviewEvent.emit(value)
+  }
+
+  onCancel(): void {
+    this.cancelEvent.emit()
   }
 }

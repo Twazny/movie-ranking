@@ -13,9 +13,6 @@
       <div class="ui stackable grid two columns">
           <div class="five wide column">
               <img class="image" [src]="movieData.Poster">
-          </div>
-          <div class="eleven wide column">
-              <div>{{movieData.Plot}}</div>
               <table class="ui definition table">
                 <tbody>
                   <tr>
@@ -40,6 +37,10 @@
                   </tr>
                 </tbody>
               </table>
+          </div>
+          <div class="eleven wide column">
+              <div>{{movieData.Plot}}</div>
+             
               <p>Your rating:</p>
               <app-movie-rating 
                 (ratingChange)="handleRatingChange($event)"
@@ -47,13 +48,16 @@
               ></app-movie-rating>
               <br>
               <button (click)="onAdd()" class="ui button">Add to your movies</button>
+              <div *ngIf="!movieData.review">
+                <h5 >You have not reviewed this movie yet</h5>
+                <button (click)="onAddReview()" class="ui labeled icon button">
+                    <i class="plus icon"></i>
+                    Add Review
+                </button>
+              </div>
+              <app-movie-review></app-movie-review>
           </div>
       </div>
-      <h5 *ngIf="!movieData.review">You have not reviewed this movie yet</h5>
-      <button (click)="onAddReview()" class="ui labeled icon button">
-          <i class="plus icon"></i>
-          Add Review
-      </button>
     </div>
 
 </div>

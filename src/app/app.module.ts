@@ -14,6 +14,7 @@ import { MovieGridComponent } from './movies/movie-grid/movie-grid.component';
 import { MovieDetailComponent } from './movies/movie-detail/movie-detail.component';
 import { MovieGridItemComponent } from './movies/movie-grid/movie-grid-item/movie-grid-item.component';
 import { MovieRatingComponent } from './movies/movie-detail/movie-rating/movie-rating.component';
+import { MovieReviewComponent } from './movies/movie-detail/movie-review/movie-review.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MovieRatingComponent } from './movies/movie-detail/movie-rating/movie-r
     MovieGridComponent,
     MovieDetailComponent,
     MovieGridItemComponent,
-    MovieRatingComponent
+    MovieRatingComponent,
+    MovieReviewComponent
   ],
   imports: [
     BrowserModule,

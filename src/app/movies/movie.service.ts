@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http'
 import { BehaviorSubject, Observable } from 'rxjs'
 import { environment } from '../../environments/environment'
 import { map } from 'rxjs/operators'
-import { FunctionCall } from '@angular/compiler'
 
 export type SearchResponse = {
     Response: string;
@@ -47,7 +46,12 @@ export interface MovieFullData extends Movie {
 export interface YourMovie extends Movie {
     position?: number;
     rating?: 1 | 2 | 3 | 4 | 5;
-    review?: string;
+    review?: Review;
+}
+
+export type Review = {
+    title: string;
+    review: string;
 }
 
 export interface YourMovieFullData extends MovieFullData, YourMovie { }

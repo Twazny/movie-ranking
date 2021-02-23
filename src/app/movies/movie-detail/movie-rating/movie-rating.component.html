@@ -1,0 +1,11 @@
+<div style="display: inline-block; user-select: none;" #container (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+    <span 
+        (click)="onRatingClick(i)"
+        style="cursor: pointer;"
+        *ngFor="let i of [1,2,3,4,5]"
+        [id]="i"
+        class="material-icons"
+        [ngStyle]="{color: i <= (changeMode ? changeToRating : rating ) ? 'gold': 'lightgray'}"
+    >grade</span>
+</div>
+<span><span *ngIf="changeMode">Change to: </span>{{(changeMode ? changeToRating : rating ) + '/' + max}}</span>

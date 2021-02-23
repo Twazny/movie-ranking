@@ -13,9 +13,6 @@
       <div class="ui stackable grid two columns">
           <div class="five wide column">
               <img class="image" [src]="movieData.Poster">
-          </div>
-          <div class="eleven wide column">
-              <div>{{movieData.Plot}}</div>
               <table class="ui definition table">
                 <tbody>
                   <tr>
@@ -40,9 +37,47 @@
                   </tr>
                 </tbody>
               </table>
-              <button (click)="onAdd()" class="ui button">Add to your movies</button>
+          </div>
+          <div class="eleven wide column">
+              <div>{{movieData.Plot}}</div>
+              <br>
+              <h5>Your rating</h5>
+              <app-movie-rating 
+                (ratingChange)="handleRatingChange($event)"
+                [rating]="movieData.rating"
+              ></app-movie-rating>
+
+              
+              <div *ngIf="!movieData.review && !newReview">
+                <br>
+                <h5>You have not reviewed this movie yet</h5>
+                <button (click)="onAddReview()" class="ui labeled icon button">
+                    <i class="plus icon"></i>
+                    Add Review
+                </button>
+              </div>
+    
+              <div *ngIf="movieData.review && !newReview">
+                <br>
+                <h5>Your review</h5>
+                <h4>"{{movieData.review.title}}"</h4>
+                <p>{{movieData.review.review}}</p>
+                <button (click)="onEditReview()" class="ui button">Edit review</button>
+              </div>
+              
+              <div *ngIf="newReview">
+                <br>
+                <h5>Edit your review</h5>
+                <app-movie-review 
+                  [review]="newReview" 
+                  (review)="handleReviewChange($event)"
+                  (cancel)="handleReviewCancel()"
+                  >
+                </app-movie-review>
+              </div>
+
           </div>
       </div>
     </div>
-    <button class="ui button">Add Review</button>
+
 </div>

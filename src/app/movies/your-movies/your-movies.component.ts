@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MovieService, YourMovie } from '../movie.service';
 
@@ -12,7 +13,8 @@ export class YourMoviesComponent implements OnInit, OnDestroy {
   movieSubs: Subscription
 
   constructor(
-    private movieService: MovieService
+    private movieService: MovieService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -24,6 +26,10 @@ export class YourMoviesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.movieSubs.unsubscribe()
+  }
+
+  onYourMovieClick(id: string): void {
+    this.router.navigate(['movies', id], { queryParamsHandling: 'preserve' })
   }
 
 }

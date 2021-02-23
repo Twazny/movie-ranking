@@ -1,0 +1,18 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="ui form">
+    <div class="field">
+        <label for="title">Title *</label>
+        <input placeholder="Rhymes are not obligatory but are recommended" type="text" name="title" formControlName="title"/>
+    </div>
+    <div class="field">
+        <label for="review">Review *</label>
+        <textarea 
+        placeholder="Make it short, no one cares"
+        name="review" formControlName="review"></textarea>
+    </div>
+    <button (click)="onCancel()" class="ui button">Cancel</button>
+    <button 
+        class="ui button"
+        type="submit"
+        [disabled]="!form.valid"
+    >Save</button>
+</form>

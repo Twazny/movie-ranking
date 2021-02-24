@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 
 export interface SearchData {
   term?: string;
@@ -23,16 +23,15 @@ export class SearchComponent implements OnInit {
   }
 
   private initForm(): void {
-    console.log(this.inputData)
     this.searchForm = new FormGroup({
-      term: new FormControl(this.inputData.term),
+      term: new FormControl(this.inputData.term,Validators.required),
       year: new FormControl(this.inputData.year)
     })
   }
 
   ngOnChanges() {
     this.searchForm = new FormGroup({
-      term: new FormControl(this.inputData.term),
+      term: new FormControl(this.inputData.term,Validators.required),
       year: new FormControl(this.inputData.year)
     })
   }

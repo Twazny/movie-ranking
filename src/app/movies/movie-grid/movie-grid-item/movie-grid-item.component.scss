@@ -10,7 +10,7 @@
     position: relative;
     cursor: pointer;
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
     height: 220px;
     width: 100%;
     justify-content: space-between;

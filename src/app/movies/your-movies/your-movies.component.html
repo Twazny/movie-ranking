@@ -8,10 +8,10 @@
         <span class="header" style="font-size: 1.1rem; margin-left: 1rem; display: inline-block;">What's your number 1?</span>
     </div>
     <div  *ngIf="movies.length>0" class="your-movies-container">
-        <div *ngFor="let yourMovie of movies; let i = index" class="your-movie">
+        <div *ngFor="let yourMovie of movies; let i = index" >
             <div 
-            (click)="onYourMovieClick(yourMovie.imdbID)"    
-            class="placeholder">
+                (click)="onYourMovieClick(yourMovie.imdbID)"    
+                class="placeholder">
                 <img 
                     style="    height: 160px; 
                     width: 100px; "

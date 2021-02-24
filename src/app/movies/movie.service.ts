@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http'
 import { BehaviorSubject, Observable } from 'rxjs'
 import { environment } from '../../environments/environment'
 import { map } from 'rxjs/operators'
@@ -54,6 +54,12 @@ export type Review = {
     review: string;
 }
 
+export interface SearchData {
+    term?: string;
+    year?: number;
+    page: number;
+}
+
 export interface YourMovieFullData extends MovieFullData, YourMovie { }
 
 @Injectable({
@@ -68,19 +74,28 @@ export class MovieService {
         private http: HttpClient
     ) { }
 
-    search(term: string): Observable<MovieResponse> {
-        return this.http.get<SearchResponse>(this.url, {
-            params: {
-                apikey: environment.omdbAPIkey,
-                s: term,
-                type: 'movie'
-            }
-        }).pipe(
+    search(searchData: SearchData): Observable<SearchResponse> {
+        let params: {[key: string]: string} = {
+            apikey: environment.omdbAPIkey,
+            type: 'movie',
+            page: '' + searchData.page
+        }
+        if (searchData.term) {
+            params.s = searchData.term
+        }
+        if (searchData.year) {
+            params.y = '' + searchData.year
+        }
+
+        return this.http.get<SearchResponse>(
+            this.url, 
+            {params}
+        ).pipe(
             map(res => {
                 if (res.Response === "False") {
-                    return []
+                    res.Search = []
                 }
-                return res.Search
+                return res
             })
         )
     }

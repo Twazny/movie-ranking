@@ -1,43 +1,44 @@
 :host {
-    flex-grow: 1;
-    width: max(20%,200px);
-    // min-width: max(20%,200px);
-    // max-width: 30%;
-    max-width: max(20%,200px);
+  flex-grow: 1;
+  width: max(20%, 200px);
+  // min-width: max(20%,200px);
+  // max-width: 30%;
+  max-width: max(20%, 200px);
 }
 
 .movie-grid-item {
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    flex-flow: column nowrap;
-    height: 220px;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    transition: background-color 300ms, color 300ms;
+  margin-bottom: 1rem;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-flow: column nowrap;
+  height: 220px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 300ms, color 300ms;
 
-    &:hover {
-        background-color: black;
-        color: white;
-    }
+  &:hover {
+    background-color: black;
+    color: white;
+  }
 }
 
 .item-title {
-    padding: 0 20px;
-    text-align: center;
-    min-height: 20%;
+  padding: 0 20px;
+  text-align: center;
+  min-height: 20%;
 }
 
 .image-container {
-    display: flex;
-    align-items: center;
-    flex-grow: 1;
-    max-width: 50%;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  max-width: 50%;
 }
 
 .item-image {
-    max-width: 100%;
-    height: auto;
-    max-height: 160px;
+  max-width: 100%;
+  height: auto;
+  max-height: 160px;
 }

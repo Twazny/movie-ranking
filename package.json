@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "config": "ts-node ./config.index.ts",
     "build": "npm run config && ng build --prod",
     "test": "ng test",
     "lint": "ng lint",

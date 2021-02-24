@@ -116,12 +116,14 @@ export class MovieService {
     }
 
     updateYourMovie(movie: YourMovie): void {
-        let found = this.yourMovies.find(movieEl => movieEl.imdbID === movie.imdbID)
-        if (found) {
-            found = { ...found, ...movie }
+        console.log(movie.rating)
+        let idx = this.yourMovies.findIndex(movieEl => movieEl.imdbID === movie.imdbID)
+        if (idx >= 0) {
+            this.yourMovies[idx] = {...this.yourMovies[idx], ...movie}
         } else {
             this.yourMovies.push(movie)
         }
+        this.sortByRate()
         this.notify()
     }
 
@@ -132,6 +134,14 @@ export class MovieService {
             rating: 0,
             review: null
         }
+    }
+
+    private sortByRate(): void {
+        console.log(this.yourMovies)
+        this.yourMovies.sort((movie, nextMovie) => {
+            return nextMovie.rating - movie.rating
+        })
+        console.log(this.yourMovies)   
     }
 
     private notify(): void {

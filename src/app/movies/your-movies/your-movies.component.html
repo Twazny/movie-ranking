@@ -1,11 +1,11 @@
 <div class="ui segment" style="margin-bottom: 10px;">
     <h4>Your movies</h4>
-    <div style="display: flex; align-items: center;" *ngIf="movies.length===0">
+    <div class="your-movies-container" *ngIf="movies.length===0">
         <div class="placeholder" >
             ?
             <div class="position-number">1</div>
         </div>
-        <span class="header" style="font-size: 1.1rem; margin-left: 1rem; display: inline-block;">What's your number 1?</span>
+        <p class="no-movie-message">What's your number 1?</p>
     </div>
     <div  *ngIf="movies.length>0" class="your-movies-container">
         <div *ngFor="let yourMovie of movies; let i = index" >
@@ -13,8 +13,6 @@
                 (click)="onYourMovieClick(yourMovie.imdbID)"    
                 class="placeholder">
                 <img 
-                    style="    height: 160px; 
-                    width: 100px; "
                     class="your-movie-poster"
                     [src]="yourMovie.Poster"
                 >

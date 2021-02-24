@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http'
 import { BehaviorSubject, Observable } from 'rxjs'
 import { environment } from '../../environments/environment'
 import { map } from 'rxjs/operators'
+import { TmplAstRecursiveVisitor } from '@angular/compiler'
 
 export type SearchResponse = {
     Response: string;
@@ -44,8 +45,9 @@ export interface MovieFullData extends Movie {
 }
 
 export interface YourMovie extends Movie {
+    yourMovie: boolean;
     position?: number;
-    rating?: 1 | 2 | 3 | 4 | 5;
+    rating?: number;
     review?: Review;
 }
 
@@ -116,22 +118,43 @@ export class MovieService {
     }
 
     updateYourMovie(movie: YourMovie): void {
-        let found = this.yourMovies.find(movieEl => movieEl.imdbID === movie.imdbID)
-        if (found) {
-            found = { ...found, ...movie }
+        movie.yourMovie = true
+        let idx = this.yourMovies.findIndex(movieEl => movieEl.imdbID === movie.imdbID)
+        if (idx >= 0) {
+            this.yourMovies[idx] = {...this.yourMovies[idx], ...movie}
         } else {
             this.yourMovies.push(movie)
         }
+        this.sortByRate()
         this.notify()
     }
 
-    private fromYourMovies(id: string): YourMovie | {} {
+    removeFromYourMovies(id: string): void {
+        let idx = this.yourMovies.findIndex(movie => movie.imdbID === id)
+        this.yourMovies.splice(idx,1)
+        this.notify()
+    }
+
+
+    private fromYourMovies(id: string): YourMovie | {
+        yourMovie: boolean,
+        position: null,
+        rating: number,
+        review: null
+    }  {
         const found = this.yourMovies.find(movie => movie.imdbID === id)
         return found || {
+            yourMovie: false,
             position: null,
             rating: 0,
             review: null
         }
+    }
+
+    private sortByRate(): void {
+        this.yourMovies.sort((movie, nextMovie) => {
+            return nextMovie.rating - movie.rating
+        })
     }
 
     private notify(): void {

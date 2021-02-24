@@ -20,22 +20,22 @@
             <div class="ui text loader">Loading</div>
         </div>
 
-        <div style="display: flex; flex-wrap: nowrap; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-            <span style="margin-left: 1rem; flex-shrink: 1;">
+        <div *ngIf="movies.length > 0" class="page-info">
+            <span class="page-info-results">
                 Found: <b>{{found}}</b> results, showing: <b>{{(currentPage - 1) * 10 + 1}} - {{currentPage * 10 > found ? found : currentPage * 10 }}</b>
             </span>
-            <div style="flex-shrink: 0">
+            <div class="page-info-navigation">
                 <button 
                     [disabled]="this.currentPage <= 1"
                     (click)="onPreviousPage()" 
-                    class="ui icon button">
+                    class="ui icon basic button">
                     <i class="angle left icon"></i>
                 </button>
-                <span style="margin-right: 3.5px;">{{currentPage + ' / ' + numberOfPages}}</span>
+                <span class="page-info-current">{{currentPage + ' / ' + numberOfPages}}</span>
                 <button 
                     [disabled]="this.currentPage >= this.numberOfPages"
                     (click)="onNextPage()" 
-                    class="ui icon button">
+                    class="ui icon basic button">
                     <i class="angle right icon"></i>
                 </button>
             </div>

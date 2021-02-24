@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { merge } from 'rxjs';
 import { tap, switchMap, map } from 'rxjs/operators';
 import { YourMovieFullData, MovieService, Review } from '../movie.service';
 
@@ -13,6 +14,7 @@ export class MovieDetailComponent implements OnInit {
   movieData: YourMovieFullData
   loading = true
   newReview: Review
+  noPosterImage = 'https://allmovies.tube/assets/img/no-poster.png'
 
   constructor(
     private route: ActivatedRoute,
@@ -21,8 +23,12 @@ export class MovieDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.params.pipe(
+    const routing$ = this.route.params.pipe(
       tap((data: Params) => this.id = data['id']),
+    )
+    const yourMovie$ = this.movieService.yourMoviesSubject
+    
+    merge(routing$, yourMovie$).pipe(
       switchMap((data: Params) => this.movieService.get(this.id))
     ).subscribe(movieData => {
       this.loading = false
@@ -47,6 +53,10 @@ export class MovieDetailComponent implements OnInit {
       title: '',
       review: ''
     }
+  }
+
+  onRemove(): void {
+    this.movieService.removeFromYourMovies(this.movieData.imdbID)
   }
 
   handleReviewChange(review: Review): void {

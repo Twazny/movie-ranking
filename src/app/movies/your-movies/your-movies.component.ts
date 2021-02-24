@@ -12,6 +12,8 @@ export class YourMoviesComponent implements OnInit, OnDestroy {
   movies: YourMovie[]
   movieSubs: Subscription
 
+  noPosterImage = 'https://allmovies.tube/assets/img/no-poster.png'
+
   constructor(
     private movieService: MovieService,
     private router: Router

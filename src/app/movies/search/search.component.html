@@ -7,20 +7,25 @@
                     <input type="text" name="term" id="" formControlName="term" placeholder="At least three characters">
                 </div>
             </div>
-            <div class="four wide column">
-                <div class="field">
-                    <label for="year">Year</label>
-                    <input type="number" name="year" id="" formControlName="year" placeholder="e.g. 2015">
+            <div class="six wide column">
+                <div style="display: flex; align-items: center;">
+                    <div class="field" style="flex-grow: 1;">
+                        <label for="year">Year</label>
+                        <input type="number" name="year" id="" formControlName="year" placeholder="e.g. 2015">
+                    </div>
+                    <div  style="margin-top: auto; margin-left: 1em; margin-bottom: 1em;">
+                        <button 
+                            [disabled]="!searchForm.valid"
+                            type="submit" 
+                            class="ui icon button" 
+                        >
+                            <i class="search icon"></i>
+                        </button>
+                    </div>
                 </div>
+
             </div>
-            <div class="two wide column" style="margin-top: auto; margin-bottom: 0;">
-                <button 
-                    [disabled]="!searchForm.valid"
-                    type="submit" 
-                    class="ui button" 
-                    style="width:100%;"
-                >Search</button>
-            </div>
+
         </div>
     </form>    
 </div>

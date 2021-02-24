@@ -14,7 +14,7 @@
                 class="placeholder">
                 <img 
                     class="your-movie-poster"
-                    [src]="yourMovie.Poster"
+                    [src]="yourMovie.Poster !== 'N/A' ? yourMovie.Poster : noPosterImage"
                 >
                 <div class="position-number">{{i+1}}</div>
             </div>

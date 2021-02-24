@@ -1,10 +1,10 @@
-<div class="ui segment" style="">
+<div class="ui segment" style="height: 100%;">
     <div *ngIf="loading" class="ui active inverted dimmer">
         <div class="ui text loader">Loading</div>
     </div>
     <div *ngIf="!loading">
       <div style="display: flex; margin-bottom: 10px; align-items: center;">
-        <button (click)="onBack()" class="ui labeled icon button">
+        <button (click)="onBack()" class="ui labeled icon basic button">
           <i class="angle left icon"></i>
           Back to movies
         </button>
@@ -12,7 +12,7 @@
       </div>
       <div class="ui stackable grid two columns">
           <div class="five wide column">
-              <img style="width: 100%; height: auto;" [src]="movieData.Poster">
+              <img style="width: 100%; height: auto;" [src]="movieData.Poster !== 'N/A' ? movieData.Poster : noPosterImage">
               <table class="ui definition table">
                 <tbody>
                   <tr>
@@ -39,7 +39,7 @@
               </table>
           </div>
           <div class="eleven wide column">
-              <div>{{movieData.Plot}}</div>
+              <div style="text-align: justify;">{{movieData.Plot}}</div>
               <br>
               <h5>Your rating</h5>
               <app-movie-rating 
@@ -52,7 +52,7 @@
               <div *ngIf="!movieData.review && !newReview">
                 <br>
                 <h5>You have not reviewed this movie yet</h5>
-                <button (click)="onAddReview()" class="ui labeled icon button">
+                <button (click)="onAddReview()" class="ui labeled icon basic button">
                     <i class="plus icon"></i>
                     Add Review
                 </button>
@@ -62,8 +62,10 @@
                 <br>
                 <h5>Your review</h5>
                 <h4>"{{movieData.review.title}}"</h4>
-                <p>{{movieData.review.review}}</p>
-                <button (click)="onEditReview()" class="ui button">Edit review</button>
+                <p style="text-align: justify;">{{movieData.review.review}}</p>
+                <button (click)="onEditReview()" class="ui labeled icon basic button">
+                  <i class="pencil icon"></i>
+                  Edit review</button>
               </div>
               
               <div *ngIf="newReview">
@@ -76,7 +78,19 @@
                   >
                 </app-movie-review>
               </div>
+              <br>
+              <button 
+                (click)="onRemove()"
+                *ngIf="movieData.yourMovie"
+                class="ui labeled icon basic button">
+                <i class="thumbs down icon"></i>
+                Remove from your movies
+              </button>
 
+              <!-- <button (click)="onAddReview()" class="ui labeled icon button">
+                <i class="plus icon"></i>
+                Add Review
+            </button> -->
           </div>
       </div>
     </div>

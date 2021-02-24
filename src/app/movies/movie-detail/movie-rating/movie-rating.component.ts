@@ -13,6 +13,7 @@ export class MovieRatingComponent implements OnInit {
   @Output() ratingChange = new EventEmitter<number>()
   @ViewChild('container') containerRef: ElementRef
 
+  maxArray: number[]
   changeToRating = 0
   changeMode = false
   mouseMoveSubs: Subscription
@@ -20,6 +21,13 @@ export class MovieRatingComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(): void {
+    this.maxArray = []
+    for (let i = 1; i <= this.max; i++) {
+      this.maxArray.push(i)
+    }
   }
 
   ngAfterViewInit(): void {

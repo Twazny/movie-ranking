@@ -66,7 +66,7 @@ export interface YourMovieFullData extends MovieFullData, YourMovie { }
     providedIn: 'root'
 })
 export class MovieService {
-    private url = 'http://www.omdbapi.com/'
+    private url = 'https://www.omdbapi.com/'
     yourMovies: YourMovie[] = []
     yourMoviesSubject = new BehaviorSubject<YourMovie[]>(this.yourMovies)
 
@@ -75,7 +75,7 @@ export class MovieService {
     ) { }
 
     search(searchData: SearchData): Observable<SearchResponse> {
-        let params: {[key: string]: string} = {
+        let params: { [key: string]: string } = {
             apikey: environment.omdbAPIkey,
             type: 'movie',
             page: '' + searchData.page
@@ -88,8 +88,8 @@ export class MovieService {
         }
 
         return this.http.get<SearchResponse>(
-            this.url, 
-            {params}
+            this.url,
+            { params }
         ).pipe(
             map(res => {
                 if (res.Response === "False") {

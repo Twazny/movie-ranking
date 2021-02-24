@@ -3,7 +3,7 @@
         <div class="ui grid stackable">
             <div class="ten wide column">
                 <div class="field">
-                    <label for="term">Search movies</label>
+                    <label for="term">Search movies *</label>
                     <input type="text" name="term" id="" formControlName="term" placeholder="At least three characters">
                 </div>
             </div>
@@ -14,7 +14,12 @@
                 </div>
             </div>
             <div class="two wide column" style="margin-top: auto; margin-bottom: 0;">
-                <button type="submit" class="ui button" style="width:100%;">Search</button>
+                <button 
+                    [disabled]="!searchForm.valid"
+                    type="submit" 
+                    class="ui button" 
+                    style="width:100%;"
+                >Search</button>
             </div>
         </div>
     </form>    

@@ -1,6 +1,9 @@
 .your-movies-container {
   display: flex;
   flex-flow: row nowrap;
+  height: 174px;
+  overflow-y: hidden;
+  overflow-x: auto;
 }
 
 .position-number {
@@ -18,6 +21,7 @@
 }
 
 .placeholder {
+  cursor: pointer;
   display: inline-block;
   position: relative;
   height: 160px;
@@ -27,4 +31,17 @@
   text-align: center;
   line-height: 160px;
   margin-right: 1rem;
+
+  & img {
+    height: 160px;
+    width: 100px;
+  }
+}
+
+.no-movie-message {
+  height: 100%;
+  font-size: 1.1rem;
+  margin-left: 1rem;
+  display: inline-block;
+  line-height: 174px;
 }

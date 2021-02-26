@@ -1,0 +1,17 @@
+.movie-rating {
+  display: flex;
+  align-items: center;
+}
+
+.movie-rating-stars {
+  display: inline-block;
+  user-select: none;
+  line-height: 100%;
+  & span {
+    cursor: pointer;
+  }
+}
+
+.movie-rating-info {
+  margin-left: 5px;
+}

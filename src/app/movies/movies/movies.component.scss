@@ -2,6 +2,13 @@
   height: 100%;
 }
 
+.movies {
+  display: flex;
+  height: 100%;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
 .page-info {
   display: flex;
   flex-wrap: nowrap;

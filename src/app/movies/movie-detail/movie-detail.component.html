@@ -3,12 +3,12 @@
         <div class="ui text loader">Loading</div>
     </div>
     <div *ngIf="!loading">
-      <div style="display: flex; margin-bottom: 10px; align-items: center;">
+      <div class="movie-title-container">
         <button (click)="onBack()" class="ui labeled icon basic button">
           <i class="angle left icon"></i>
           Back to movies
         </button>
-        <h2 style="margin: 0 0 0 20px ; display: inline-block;">{{movieData.Title}}</h2>
+        <h2 class="movie-title">{{movieData.Title}}</h2>
       </div>
       <div class="ui stackable grid two columns">
           <div class="five wide column">

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { merge } from 'rxjs';
+import { merge, Subscription } from 'rxjs';
 import { tap, switchMap, map } from 'rxjs/operators';
 import { YourMovieFullData, MovieService, Review } from '../movie.service';
 
@@ -15,6 +15,7 @@ export class MovieDetailComponent implements OnInit {
   loading = true
   newReview: Review
   noPosterImage = 'https://allmovies.tube/assets/img/no-poster.png'
+  movieSubs: Subscription
 
   constructor(
     private route: ActivatedRoute,
@@ -28,13 +29,17 @@ export class MovieDetailComponent implements OnInit {
     )
     const yourMovie$ = this.movieService.yourMoviesSubject
     
-    merge(routing$, yourMovie$).pipe(
+    this.movieSubs = merge(routing$, yourMovie$).pipe(
       switchMap((data: Params) => this.movieService.get(this.id))
     ).subscribe(movieData => {
       this.loading = false
       this.movieData = movieData
       this.newReview = null
     })
+  }
+
+  ngOnDestroy(): void {
+    this.movieSubs.unsubscribe() 
   }
 
   onBack(): void {
